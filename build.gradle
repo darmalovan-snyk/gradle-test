@@ -1,0 +1,30 @@
+plugins {
+	id "org.sonarqube" version "2.6"
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+apply plugin: 'maven-publish'
+
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.3.1'
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectName", "CloudFlare-API-Tool"
+		property "sonar.projectKey", "CloudFlare-API-Tool"
+		property "sonar.host.url", "https://sonarqube.com"
+	}
+}
+
+dependencies {
+	compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.3'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+}
+
